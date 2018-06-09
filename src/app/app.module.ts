@@ -1,34 +1,37 @@
+import { UsersPageModule } from './../pages/users/users.module';
+import { FeedPageModule } from './../pages/feed/feed.module';
+import { FeedPage } from './../pages/feed/feed';
 import { BrowserModule } from '@angular/platform-browser';
 import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 
 import { MyApp } from './app.component';
-import { HomePage } from '../pages/home/home';
-import { ListPage } from '../pages/list/list';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
+import { UsersServiceProvider } from '../providers/users-service/users-service';
+import { PhotosServiceProvider } from '../providers/photos-service/photos-service';
 
 @NgModule({
   declarations: [
-    MyApp,
-    HomePage,
-    ListPage
+    MyApp
   ],
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
+    FeedPageModule,
+    UsersPageModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
-    MyApp,
-    HomePage,
-    ListPage
+    MyApp
   ],
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    { provide: ErrorHandler, useClass: IonicErrorHandler },
+    UsersServiceProvider,
+    PhotosServiceProvider
   ]
 })
-export class AppModule {}
+export class AppModule { }
